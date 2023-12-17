@@ -42,7 +42,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 }
-.posts__like-button {
+.posts__btn-like {
 	flex-shrink: 0;
 	width: 20px;
 	height: 20px;
@@ -51,10 +51,10 @@
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.posts__like-button:hover {
+.posts__btn-like:hover {
 	opacity: 0.5;
 }
-.posts__like-button_actived {
+.posts__btn-like_actived {
 	background-image: url("../images/like-icon-actived.svg");
 }
 
