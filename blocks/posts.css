@@ -15,18 +15,45 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.posts__trash-btn {
+  position: absolute;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+  background-image: url("../images/trash-icon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 15px;
+  transition: all 0.1s ease-in;
+}
+.posts__trash-btn:hover {
+  opacity: 0.8;
 }
 
 .posts__image-wrapper {
   position: relative;
   width: 100%;
   padding-bottom: 100%;
+  overflow: hidden;
 }
 .posts__image {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.posts__image:hover {
+  transform: scale(1.2);
 }
 
 .posts__description {

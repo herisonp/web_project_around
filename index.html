@@ -9,7 +9,7 @@
     <title>TripleTen - Around</title>
   </head>
   <body>
-    <div class="popup popup_edit-profile">
+    <div class="popup popup_closed popup_edit-profile">
       <div class="popup__container">
         <button class="button popup__btn-close">
           <img
@@ -19,7 +19,7 @@
           />
         </button>
         <h2 class="popup__title">Editar perfil</h2>
-        <form class="popup__form">
+        <form class="popup__form popup__form_edit-profile">
           <fieldset class="popup__fieldset">
             <input
               type="text"
@@ -40,7 +40,7 @@
         </form>
       </div>
     </div>
-    <div class="popup popup_add-place">
+    <div class="popup popup_closed popup_add-place">
       <div class="popup__container">
         <button class="button popup__btn-close">
           <img
@@ -50,7 +50,7 @@
           />
         </button>
         <h2 class="popup__title">Novo local</h2>
-        <form class="popup__form popup__form_place">
+        <form class="popup__form popup__form_add-place">
           <fieldset class="popup__fieldset">
             <input
               type="text"
@@ -69,6 +69,19 @@
           </fieldset>
           <button type="submit" class="button popup__btn-submit">Criar</button>
         </form>
+      </div>
+    </div>
+    <div class="popup popup_closed popup_image">
+      <div class="popup__container popup__container_image">
+        <button class="button popup__btn-close">
+          <img
+            src="./images/close-icon.svg"
+            alt="Ícone do botão de fechar popup"
+            class="popup__close-icon"
+          />
+        </button>
+        <img src="" alt="" class="popup__image" />
+        <p class="popup__image-title"></p>
       </div>
     </div>
     <div class="page">
@@ -107,92 +120,25 @@
         </section>
 
         <section class="posts">
-          <ul class="posts__list">
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-01.jpg"
-                  class="posts__image"
-                  alt="Fotografia de Rio de Janeiro"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">Rio de Janeiro</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-02.jpg"
-                  class="posts__image"
-                  alt="Fotografia de Rio de Janeiro"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">Rio de Janeiro</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-03.jpg"
-                  class="posts__image"
-                  alt="Fotografia de Rio de Janeiro"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">Rio de Janeiro</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-04.jpg"
-                  class="posts__image"
-                  alt="Fotografia de Rio de Janeiro"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">Rio de Janeiro</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-05.jpg"
-                  class="posts__image"
-                  alt="Fotografia de São Paulo"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">São Paulo</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-            <li class="posts__item">
-              <div class="posts__image-wrapper">
-                <img
-                  src="./images/post-06.jpg"
-                  class="posts__image"
-                  alt="Fotografia de Rio de Janeiro"
-                />
-              </div>
-              <div class="posts__description">
-                <h2 class="posts__title">Rio de Janeiro</h2>
-                <button class="button posts__btn-like"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="posts__list"></ul>
         </section>
       </main>
       <footer class="footer container">
         <p class="footer__text">© 2023 Around The U.S.</p>
       </footer>
     </div>
+    <template id="posts__item">
+      <li class="posts__item">
+        <button class="posts__trash-btn"></button>
+        <div class="posts__image-wrapper">
+          <img src="" class="posts__image" alt="" />
+        </div>
+        <div class="posts__description">
+          <h2 class="posts__title"></h2>
+          <button class="button posts__btn-like"></button>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>
