@@ -27,6 +27,9 @@
               name="name"
               class="popup__input popup__input_type_name"
               placeholder="Nome"
+              minlength="3"
+              maxlength="20"
+              required
             />
             <input
               type="text"
@@ -34,9 +37,12 @@
               name="about"
               class="popup__input popup__input_type_about"
               placeholder="Sobre mim"
+              minlength="3"
+              maxlength="20"
+              required
             />
           </fieldset>
-          <button class="button popup__btn-submit">Salvar</button>
+          <button type="submit" class="button popup__btn-submit">Salvar</button>
         </form>
       </div>
     </div>
@@ -58,6 +64,9 @@
               name="title"
               class="popup__input popup__input_type_title"
               placeholder="Título"
+              minlength="3"
+              maxlength="24"
+              required
             />
             <input
               type="text"
@@ -65,6 +74,8 @@
               name="image"
               class="popup__input popup__input_type_image"
               placeholder="Link de imagem"
+              minlength="15"
+              required
             />
           </fieldset>
           <button type="submit" class="button popup__btn-submit">Criar</button>
