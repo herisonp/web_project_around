@@ -1,17 +1,13 @@
-const formProfile = document.querySelector(".popup__form_edit-profile");
-const formAddPlace = document.querySelector(".popup__form_add-place");
-const popupClose = document.querySelectorAll(".popup__btn-close");
-const btnEdit = document.querySelector(".profile__btn-edit");
-const btnNewPlace = document.querySelector(".profile__btn-add");
-
-const nameInput = formProfile.querySelector(".popup__input_type_name");
-const jobInput = formProfile.querySelector(".popup__input_type_about");
+import { resetValidation, validateOptions } from "./validate.js";
+const popups = Array.from(document.querySelectorAll(".popup"));
+const popupsTriggers = Array.from(document.querySelectorAll(".popup-trigger"));
+const postsList = document.querySelector(".posts__list");
+const forms = Array.from(document.querySelectorAll(".popup__form"));
 
 const nameText = document.querySelector(".profile__name");
 const jobText = document.querySelector(".profile__about");
 
-const postsList = document.querySelector(".posts__list");
-
+// cards iniciais
 const initialCards = [
   {
     name: "Rio de Janeiro",
@@ -39,6 +35,7 @@ const initialCards = [
   },
 ];
 
+// criando posts
 function createPost(post) {
   const postItemTemplate = document.querySelector("#posts__item").content;
   const postItemElement = postItemTemplate.querySelector(".posts__item");
@@ -78,59 +75,109 @@ function setInitialPosts() {
   });
 }
 
+function resetForm(form) {
+  if (form) {
+    const buttonForm = form.querySelector(validateOptions.submitButtonSelector);
+    resetValidation(form, validateOptions);
+    buttonForm.setAttribute("disabled", true);
+    buttonForm.classList.add(validateOptions.inactiveButtonClass);
+    form.reset();
+  }
+  return;
+}
+
+// funções de popup
 function togglePopup(popup) {
   popup.classList.toggle("popup_closed");
   popup.classList.toggle("popup_opened");
+  const form = popup.querySelector(".popup__form");
+  if (popup.classList.contains("popup_opened")) {
+    document.addEventListener("keydown", closePopupWithKeyboard);
+  } else {
+    document.removeEventListener("keydown", closePopupWithKeyboard);
+    resetForm(form);
+  }
 }
 
-function closePopup(evt) {
-  const popup = evt.target.closest(".popup");
+function closePopupWithKeyboard(evt) {
+  if (evt.key == "Escape") {
+    const popupOpen = document.querySelector(".popup_opened");
+    togglePopup(popupOpen);
+  }
+}
+
+function setInputsProfile(popup) {
+  const form = popup.querySelector(".popup__form");
+  if (form.classList.contains("popup__form_edit-profile")) {
+    form.name.value = nameText.textContent;
+    form.about.value = jobText.textContent;
+  }
+  return;
+}
+
+function handleOpenPopup(evt) {
+  const popup = document.querySelector(`.popup_${evt.currentTarget.id}`);
+  setInputsProfile(popup);
   togglePopup(popup);
 }
 
-function popupEditProfile() {
-  const popup = document.querySelector(".popup_edit-profile");
-  togglePopup(popup);
-  nameInput.value = nameText.textContent;
-  jobInput.value = jobText.textContent;
+function handleClosePopup(evt) {
+  if (
+    evt.target.classList.contains("popup__close-icon") ||
+    evt.target.classList.contains("popup")
+  ) {
+    const popup = evt.target.closest(".popup");
+    togglePopup(popup);
+  }
 }
 
-function popupAddNewPlace() {
-  const popup = document.querySelector(".popup_add-place");
-  togglePopup(popup);
+function setPopup() {
+  popups.forEach((popup) => {
+    popup.addEventListener("click", handleClosePopup);
+  });
+
+  popupsTriggers.forEach((popupTrigger) => {
+    popupTrigger.addEventListener("click", handleOpenPopup);
+  });
 }
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameText.textContent = nameInput.value;
-  jobText.textContent = jobInput.value;
-  const popup = evt.target.closest(".popup");
-  togglePopup(popup);
-}
-
-function handleAddNewPost(evt) {
-  evt.preventDefault();
-  const titleInput = evt.target.querySelector(".popup__input_type_title");
-  const linkInput = evt.target.querySelector(".popup__input_type_image");
-
+// submits
+function submitPost(form) {
   const post = {
-    name: titleInput.value,
-    link: linkInput.value,
+    name: form.title.value,
+    link: form.image.value,
   };
 
   postsList.prepend(createPost(post));
 
-  evt.target.reset();
-  const popup = evt.target.closest(".popup");
+  form.reset();
+  const popup = form.closest(".popup");
   togglePopup(popup);
 }
 
-popupClose.forEach((btn) => {
-  btn.addEventListener("click", closePopup);
-});
-formProfile.addEventListener("submit", handleProfileFormSubmit);
-formAddPlace.addEventListener("submit", handleAddNewPost);
-btnEdit.addEventListener("click", popupEditProfile);
-btnNewPlace.addEventListener("click", popupAddNewPlace);
+function submitProfile(form) {
+  nameText.textContent = form.name.value;
+  jobText.textContent = form.about.value;
+  const popup = form.closest(".popup");
+  togglePopup(popup);
+}
 
+function handleSubmitForms(evt) {
+  evt.preventDefault();
+  const form = evt.target;
+  if (evt.target.classList.contains("popup__form_edit-profile")) {
+    submitProfile(form);
+  } else if (evt.target.classList.contains("popup__form_add-place")) {
+    submitPost(form);
+  }
+}
+
+function enableSubmitForms(formsList) {
+  forms.forEach((form) => {
+    form.addEventListener("submit", handleSubmitForms);
+  });
+}
+
+setPopup();
 setInitialPosts();
+enableSubmitForms(forms);

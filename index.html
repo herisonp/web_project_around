@@ -19,28 +19,34 @@
           />
         </button>
         <h2 class="popup__title">Editar perfil</h2>
-        <form class="popup__form popup__form_edit-profile">
+        <form name="edit-profile" class="popup__form popup__form_edit-profile">
           <fieldset class="popup__fieldset">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="popup__input popup__input_type_name"
-              placeholder="Nome"
-              minlength="3"
-              maxlength="20"
-              required
-            />
-            <input
-              type="text"
-              id="about"
-              name="about"
-              class="popup__input popup__input_type_about"
-              placeholder="Sobre mim"
-              minlength="3"
-              maxlength="20"
-              required
-            />
+            <div class="popup__input-control">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="popup__input popup__input_type_name"
+                placeholder="Nome"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__error"></span>
+            </div>
+            <div class="popup__input-control">
+              <input
+                type="text"
+                id="about"
+                name="about"
+                class="popup__input popup__input_type_about"
+                placeholder="Sobre mim"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__error"></span>
+            </div>
           </fieldset>
           <button type="submit" class="button popup__btn-submit">Salvar</button>
         </form>
@@ -56,27 +62,33 @@
           />
         </button>
         <h2 class="popup__title">Novo local</h2>
-        <form class="popup__form popup__form_add-place">
+        <form name="add-place" class="popup__form popup__form_add-place">
           <fieldset class="popup__fieldset">
-            <input
-              type="text"
-              id="title"
-              name="title"
-              class="popup__input popup__input_type_title"
-              placeholder="Título"
-              minlength="3"
-              maxlength="24"
-              required
-            />
-            <input
-              type="text"
-              id="image"
-              name="image"
-              class="popup__input popup__input_type_image"
-              placeholder="Link de imagem"
-              minlength="15"
-              required
-            />
+            <div class="popup__input-control">
+              <input
+                type="text"
+                id="title"
+                name="title"
+                class="popup__input popup__input_type_title"
+                placeholder="Título"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span class="popup__error"></span>
+            </div>
+            <div class="popup__input-control">
+              <input
+                type="url"
+                id="image"
+                name="image"
+                class="popup__input popup__input_type_image"
+                placeholder="Link de imagem"
+                minlength="15"
+                required
+              />
+              <span class="popup__error"></span>
+            </div>
           </fieldset>
           <button type="submit" class="button popup__btn-submit">Criar</button>
         </form>
@@ -113,7 +125,10 @@
           <div class="profile__info">
             <div class="profile__name-wrapper">
               <h1 class="profile__name">Jacques Cousteau</h1>
-              <button class="button profile__btn-edit">
+              <button
+                id="edit-profile"
+                class="button profile__btn-edit popup-trigger"
+              >
                 <img
                   src="./images/edit-icon.svg"
                   alt="Ícone do botão de editar perfil"
@@ -122,7 +137,7 @@
             </div>
             <p class="profile__about">Explorar</p>
           </div>
-          <button class="button profile__btn-add">
+          <button id="add-place" class="button profile__btn-add popup-trigger">
             <img
               src="./images/plus-icon.svg"
               alt="Ícone do botão de adicionar novos posts"
@@ -150,6 +165,7 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/scripts.js"></script>
+    <script type="module" src="./scripts/scripts.js"></script>
+    <script type="module" src="./scripts/validate.js"></script>
   </body>
 </html>
