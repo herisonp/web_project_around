@@ -98,6 +98,19 @@
   border-bottom-color: #000;
 }
 
+.popup__input_type_error {
+  border-color: red;
+}
+
+.popup__error {
+  visibility: hidden;
+  color: red;
+  font-size: 12px;
+}
+.popup__error_visible {
+  visibility: visible;
+}
+
 .popup__btn-submit {
   width: 100%;
   padding-block: 16px;
@@ -107,6 +120,14 @@
 }
 .popup__btn-submit:hover {
   opacity: 0.8;
+}
+.popup__btn-submit:disabled,
+.popup__btn-submit_disabled {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+  opacity: 0.2;
+  cursor: default;
 }
 
 @media screen and (max-width: 640px) {
