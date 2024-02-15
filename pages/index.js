@@ -1,11 +1,11 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import { Card } from "../scripts/Card.js";
+import { FormValidator } from "../scripts/FormValidator.js";
 import {
   setPopup,
   closePopup,
   validateOptions,
   resetValidationForm,
-} from "./utils.js";
+} from "../scripts/utils.js";
 
 const postsList = document.querySelector(".posts__list");
 const forms = Array.from(document.querySelectorAll(".popup__form"));
@@ -13,28 +13,28 @@ const forms = Array.from(document.querySelectorAll(".popup__form"));
 // cards iniciais
 const initialCards = [
   {
-    name: "Rio de Janeiro",
-    link: "./images/post-01.jpg",
+    name: "Pão de Açúcar, RJ",
+    link: "./images/pao-de-acucar-rj.jpg",
   },
   {
-    name: "Rio de Janeiro",
-    link: "./images/post-02.jpg",
+    name: "Dedo de Deus, RJ",
+    link: "./images/dedo-de-deus-rj.jpg",
   },
   {
-    name: "Rio de Janeiro",
-    link: "./images/post-03.jpg",
+    name: "Cristo Redentor, RJ",
+    link: "./images/cristo-redentor-rj.jpg",
   },
   {
-    name: "Rio de Janeiro",
-    link: "./images/post-04.jpg",
+    name: "Búzios, RJ",
+    link: "./images/buzios-rj.jpg",
   },
   {
     name: "São Paulo",
-    link: "./images/post-05.jpg",
+    link: "./images/sao-paulo-sp.jpg",
   },
   {
-    name: "Rio de Janeiro",
-    link: "./images/post-06.jpg",
+    name: "Arraial do Cabo, RJ",
+    link: "./images/arraial-do-cabo-rj.jpg",
   },
 ];
 
