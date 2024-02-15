@@ -5,6 +5,8 @@ const jobText = document.querySelector(".profile__about");
 
 // funções de popup
 function openPopup(popup) {
+  const form = popup.querySelector(".popup__form");
+  resetValidationForm(form);
   popup.classList.toggle("popup_closed");
   popup.classList.toggle("popup_opened");
   document.addEventListener("keydown", closePopupWithKeyboard);
@@ -13,9 +15,7 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.toggle("popup_closed");
   popup.classList.toggle("popup_opened");
-  const form = popup.querySelector(".popup__form");
   document.removeEventListener("keydown", closePopupWithKeyboard);
-  resetValidationForm(form);
 }
 
 function closePopupWithKeyboard(evt) {
@@ -36,8 +36,8 @@ function setInputsProfile(popup) {
 
 function handleOpenPopup(evt) {
   const popup = document.querySelector(`.popup_${evt.currentTarget.id}`);
-  setInputsProfile(popup);
   openPopup(popup);
+  setInputsProfile(popup);
 }
 
 function handleClosePopup(evt) {
@@ -62,9 +62,6 @@ function setPopup() {
 
 function resetValidationForm(form) {
   if (form) {
-    // limpar todos os campos
-    form.reset();
-
     // remover todas as mensagens de erro da tela
     const inputList = form.querySelectorAll(validateOptions.inputSelector);
     inputList.forEach((inputElement) => {
@@ -80,6 +77,8 @@ function resetValidationForm(form) {
     const buttonForm = form.querySelector(validateOptions.submitButtonSelector);
     buttonForm.disabled = true;
     buttonForm.classList.add(validateOptions.inactiveButtonClass);
+
+    form.reset();
   }
   return;
 }
