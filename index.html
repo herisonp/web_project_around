@@ -9,6 +9,53 @@
     <title>TripleTen - Around</title>
   </head>
   <body>
+    <div class="page">
+      <header class="header container">
+        <img
+          src="./images/logo-around.svg"
+          class="header__logo"
+          alt="Logo do site Around"
+        />
+      </header>
+      <main class="main container">
+        <section class="profile">
+          <img
+            src="./images/avatar.png"
+            class="profile__avatar"
+            alt="Imagem de avatar do usuário"
+          />
+          <div class="profile__info">
+            <div class="profile__name-wrapper">
+              <h1 class="profile__name">Jacques Cousteau</h1>
+              <button
+                id="edit-profile"
+                class="button profile__btn-edit popup-trigger"
+              >
+                <img
+                  src="./images/edit-icon.svg"
+                  alt="Ícone do botão de editar perfil"
+                />
+              </button>
+            </div>
+            <p class="profile__about">Explorar</p>
+          </div>
+          <button id="add-place" class="button profile__btn-add popup-trigger">
+            <img
+              src="./images/plus-icon.svg"
+              alt="Ícone do botão de adicionar novos posts"
+            />
+          </button>
+        </section>
+
+        <section class="posts">
+          <ul class="posts__list"></ul>
+        </section>
+      </main>
+      <footer class="footer container">
+        <p class="footer__text">© 2023 Around The U.S.</p>
+      </footer>
+    </div>
+
     <div class="popup popup_closed popup_edit-profile">
       <div class="popup__container">
         <button class="button popup__btn-close">
@@ -107,52 +154,7 @@
         <p class="popup__image-title"></p>
       </div>
     </div>
-    <div class="page">
-      <header class="header container">
-        <img
-          src="./images/logo-around.svg"
-          class="header__logo"
-          alt="Logo do site Around"
-        />
-      </header>
-      <main class="main container">
-        <section class="profile">
-          <img
-            src="./images/avatar.png"
-            class="profile__avatar"
-            alt="Imagem de avatar do usuário"
-          />
-          <div class="profile__info">
-            <div class="profile__name-wrapper">
-              <h1 class="profile__name">Jacques Cousteau</h1>
-              <button
-                id="edit-profile"
-                class="button profile__btn-edit popup-trigger"
-              >
-                <img
-                  src="./images/edit-icon.svg"
-                  alt="Ícone do botão de editar perfil"
-                />
-              </button>
-            </div>
-            <p class="profile__about">Explorar</p>
-          </div>
-          <button id="add-place" class="button profile__btn-add popup-trigger">
-            <img
-              src="./images/plus-icon.svg"
-              alt="Ícone do botão de adicionar novos posts"
-            />
-          </button>
-        </section>
 
-        <section class="posts">
-          <ul class="posts__list"></ul>
-        </section>
-      </main>
-      <footer class="footer container">
-        <p class="footer__text">© 2023 Around The U.S.</p>
-      </footer>
-    </div>
     <template id="posts__item">
       <li class="posts__item">
         <button class="posts__trash-btn"></button>
@@ -165,6 +167,6 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
