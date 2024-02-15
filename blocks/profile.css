@@ -40,8 +40,12 @@
 }
 
 .profile__about {
+  max-width: 450px;
   font-size: 18px;
   font-weight: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__btn-add {
