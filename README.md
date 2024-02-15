@@ -23,7 +23,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Projeto criado no Sprint 5 do bootcamp de desenvolvimento web da TripleTen.
+Projeto criado no Sprint 8 do bootcamp de desenvolvimento web da TripleTen.
 
 ## 🧪 Melhorias
 
