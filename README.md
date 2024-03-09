@@ -18,17 +18,18 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - CSS
 - Responsividade
 - JavaScript
+- POO (Programação orientada a Objeto)
+- Webpack, Babel e PostCSS
 - Git e GitHub
 - Metodoliga BEM
 
 ## 💻 Projeto
 
-Projeto criado no Sprint 8 do bootcamp de desenvolvimento web da TripleTen.
+Projeto criado durante o bootcamp de desenvolvimento web da TripleTen.
 
 ## 🧪 Melhorias
 
 Algumas melhorias que podem ser aplicadas:
 
 - Animação em alguns elementos da página para deixar mais dinâmico e interativo
-- Inserir posts de forma dinânica
 - Salvar alterações do usuário no browser
