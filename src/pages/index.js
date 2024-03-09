@@ -1,11 +1,21 @@
-import { Card } from "../scripts/Card.js";
-import { FormValidator } from "../scripts/FormValidator.js";
+import "./index.css";
+
+// images
+import imgPaoDeAcucar from "../images/pao-de-acucar-rj.jpg";
+import imgDedoDeDeus from "../images/dedo-de-deus-rj.jpg";
+import imgCristoRedentor from "../images/cristo-redentor-rj.jpg";
+import imgBuzios from "../images/buzios-rj.jpg";
+import imgSaoPaulo from "../images/sao-paulo-sp.jpg";
+import imgArraialDoCabo from "../images/arraial-do-cabo-rj.jpg";
+
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
 import {
   setPopup,
   closePopup,
   validateOptions,
   resetValidationForm,
-} from "../scripts/utils.js";
+} from "../utils/utils.js";
 
 const postsList = document.querySelector(".posts__list");
 const forms = Array.from(document.querySelectorAll(".popup__form"));
@@ -14,27 +24,27 @@ const forms = Array.from(document.querySelectorAll(".popup__form"));
 const initialCards = [
   {
     name: "Pão de Açúcar, RJ",
-    link: "./images/pao-de-acucar-rj.jpg",
+    link: imgPaoDeAcucar,
   },
   {
     name: "Dedo de Deus, RJ",
-    link: "./images/dedo-de-deus-rj.jpg",
+    link: imgDedoDeDeus,
   },
   {
     name: "Cristo Redentor, RJ",
-    link: "./images/cristo-redentor-rj.jpg",
+    link: imgCristoRedentor,
   },
   {
     name: "Búzios, RJ",
-    link: "./images/buzios-rj.jpg",
+    link: imgBuzios,
   },
   {
     name: "São Paulo",
-    link: "./images/sao-paulo-sp.jpg",
+    link: imgSaoPaulo,
   },
   {
     name: "Arraial do Cabo, RJ",
-    link: "./images/arraial-do-cabo-rj.jpg",
+    link: imgArraialDoCabo,
   },
 ];
 
