@@ -1,69 +1,13 @@
 import "./index.css";
 
-// images
-import imgPaoDeAcucar from "../images/pao-de-acucar-rj.jpg";
-import imgDedoDeDeus from "../images/dedo-de-deus-rj.jpg";
-import imgCristoRedentor from "../images/cristo-redentor-rj.jpg";
-import imgBuzios from "../images/buzios-rj.jpg";
-import imgSaoPaulo from "../images/sao-paulo-sp.jpg";
-import imgArraialDoCabo from "../images/arraial-do-cabo-rj.jpg";
-
-import { Card } from "../components/Card.js";
-import { FormValidator } from "../components/FormValidator.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {
-  setPopup,
-  closePopup,
-  validateOptions,
+  createPosts,
+  enableValidationForm,
   resetValidationForm,
+  setInputsProfile,
 } from "../utils/utils.js";
-
-const postsList = document.querySelector(".posts__list");
-const forms = Array.from(document.querySelectorAll(".popup__form"));
-
-// cards iniciais
-const initialCards = [
-  {
-    name: "Pão de Açúcar, RJ",
-    link: imgPaoDeAcucar,
-  },
-  {
-    name: "Dedo de Deus, RJ",
-    link: imgDedoDeDeus,
-  },
-  {
-    name: "Cristo Redentor, RJ",
-    link: imgCristoRedentor,
-  },
-  {
-    name: "Búzios, RJ",
-    link: imgBuzios,
-  },
-  {
-    name: "São Paulo",
-    link: imgSaoPaulo,
-  },
-  {
-    name: "Arraial do Cabo, RJ",
-    link: imgArraialDoCabo,
-  },
-];
-
-function createPost(post) {
-  const cardSelector = "#posts__item";
-  const newPost = new Card({
-    data: post,
-    cardSelector,
-  }).getCard();
-
-  return newPost;
-}
-
-// inicia posts
-function setInitialPosts() {
-  initialCards.map((post) => {
-    postsList.append(createPost(post));
-  });
-}
+import { initialCards, userInfo } from "../utils/constants.js";
 
 // submits
 function submitPost(form) {
@@ -72,46 +16,43 @@ function submitPost(form) {
     link: form.image.value,
   };
 
-  postsList.prepend(createPost(post));
+  createPosts([post], "prepend");
 
   resetValidationForm(form);
-  const popup = form.closest(".popup");
-  closePopup(popup);
 }
 
 function submitProfile(form) {
-  const nameText = document.querySelector(".profile__name");
-  const jobText = document.querySelector(".profile__about");
-  nameText.textContent = form.name.value;
-  jobText.textContent = form.about.value;
-  const popup = form.closest(".popup");
-  closePopup(popup);
+  const newUserInfo = {
+    name: form.name.value,
+    job: form.about.value,
+  };
+
+  userInfo.setUserInfo(newUserInfo);
 }
 
-function handleSubmitForms(evt) {
-  evt.preventDefault();
-  const form = evt.target;
-  if (evt.target.classList.contains("popup__form_edit-profile")) {
-    submitProfile(form);
-  } else if (evt.target.classList.contains("popup__form_add-place")) {
-    submitPost(form);
-  }
-}
+const popupFormPost = new PopupWithForm(".popup_add-place", {
+  triggerSelector: ".profile__btn-add",
+  submitForm: submitPost,
+  onClose: () => {
+    resetValidationForm(popupFormPost.getForm());
+  },
+  onStart: () => {
+    enableValidationForm(popupFormPost.getForm());
+  },
+});
+popupFormPost.setPopup();
 
-function enableValidationForm(form) {
-  new FormValidator({
-    formElement: form,
-    options: validateOptions,
-  }).enableValidation();
-}
+const popupFormProfile = new PopupWithForm(".popup_edit-profile", {
+  triggerSelector: ".profile__btn-edit",
+  submitForm: submitProfile,
+  onOpen: () => {
+    resetValidationForm(popupFormProfile.getForm());
+    setInputsProfile(popupFormProfile.getPopup());
+  },
+  onStart: () => {
+    enableValidationForm(popupFormProfile.getForm());
+  },
+});
+popupFormProfile.setPopup();
 
-function enableSubmitForms(formsList) {
-  formsList.forEach((form) => {
-    enableValidationForm(form);
-    form.addEventListener("submit", handleSubmitForms);
-  });
-}
-
-setInitialPosts();
-setPopup();
-enableSubmitForms(forms);
+createPosts(initialCards);
