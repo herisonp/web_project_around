@@ -1,9 +1,9 @@
 export default class Section {
-  constructor({ items, renderer, inserMethod }, containerSelector) {
+  constructor({ items, renderer, insertMethod }, containerSelector) {
     this._renderedItems = items;
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
-    this._inserMethod = inserMethod ?? "append";
+    this._insertMethod = insertMethod ?? "append";
   }
 
   renderItems() {
@@ -15,7 +15,7 @@ export default class Section {
 
   addItem(element) {
     // pega um elemento DOM e adiciona ao contêiner
-    switch (this._inserMethod) {
+    switch (this._insertMethod) {
       case "prepend":
         this._container.prepend(element);
         break;
