@@ -2,6 +2,7 @@ export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._isOpen = false;
+    this._handleEscCloseBound = this._handleEscClose.bind(this);
   }
 
   isOpen() {
@@ -12,17 +13,18 @@ export default class Popup {
     this._isOpen = true;
     this._popupElement.classList.remove("popup_closed");
     this._popupElement.classList.add("popup_opened");
+    document.addEventListener("keydown", this._handleEscCloseBound);
   }
 
   close() {
     this._isOpen = false;
     this._popupElement.classList.add("popup_closed");
     this._popupElement.classList.remove("popup_opened");
+    document.removeEventListener("keydown", this._handleEscCloseBound);
   }
 
   _handleEscClose(evt) {
-    // armazena a lógica para fechar o pop-up pressionando a tecla Esc
-    if (evt.key == "Escape" && this.isOpen) {
+    if (evt.key == "Escape" && this._isOpen) {
       this.close();
     }
   }
@@ -37,13 +39,8 @@ export default class Popup {
   }
 
   setEventListeners() {
-    // adiciona um ouvinte de evento click ao ícone de fechamento do popup. A janela modal também deve fechar quando os usuários clicarem na área sombreada
     this._popupElement.addEventListener("click", (evt) => {
       this._handleClickClose(evt.target);
-    });
-
-    document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
     });
   }
 }
