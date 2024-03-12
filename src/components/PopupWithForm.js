@@ -16,7 +16,6 @@ export default class PopupWithForm extends Popup {
   }
 
   close() {
-    // redefinir o formulário assim que o pop-up for fechado
     super.close();
     if (this._onClose) {
       this._onClose();
@@ -39,7 +38,6 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues(evt) {
-    // coleta dados de todos os campos de entrada.
     const form = evt.target;
     this._submitForm(form);
     this.close();

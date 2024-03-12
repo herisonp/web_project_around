@@ -7,14 +7,12 @@ export default class Section {
   }
 
   renderItems() {
-    //  renderizar cada elemento
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });
   }
 
   addItem(element) {
-    // pega um elemento DOM e adiciona ao contêiner
     switch (this._insertMethod) {
       case "prepend":
         this._container.prepend(element);
