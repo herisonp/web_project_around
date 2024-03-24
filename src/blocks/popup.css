@@ -113,6 +113,7 @@
   visibility: visible;
 }
 
+.popup__btn-confirmation,
 .popup__btn-submit {
   width: 100%;
   padding-block: 16px;
@@ -120,6 +121,7 @@
   color: #fff;
   font-size: 18px;
 }
+.popup__btn-confirmation:hover,
 .popup__btn-submit:hover {
   opacity: 0.8;
 }

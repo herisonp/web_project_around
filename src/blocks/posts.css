@@ -38,6 +38,10 @@
   opacity: 0.8;
 }
 
+.posts__trash-btn_hidden {
+  display: none;
+}
+
 .posts__image-wrapper {
   position: relative;
   width: 100%;
@@ -51,6 +55,7 @@
   object-fit: cover;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  z-index: 0;
 }
 .posts__image:hover {
   transform: scale(1.2);
@@ -71,6 +76,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+.posts__like-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .posts__btn-like {
   flex-shrink: 0;

@@ -1,11 +1,6 @@
-import UserInfo from "../components/UserInfo";
-
-const jobSelector = ".profile__about";
-const nameSelector = ".profile__name";
-export const userInfo = new UserInfo({
-  nameSelector,
-  jobSelector,
-});
+export const aboutSelector = ".profile__about";
+export const nameSelector = ".profile__name";
+export const avatarSelector = ".profile__avatar";
 
 export const postListSelector = ".posts__list";
 export const cardSelector = "#posts__item";

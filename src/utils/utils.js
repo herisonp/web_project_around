@@ -1,13 +1,32 @@
+import { Api } from "../components/Api";
 import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import PopupWithImage from "../components/PopupWithImage";
 import Section from "../components/Section";
+import UserInfo from "../components/UserInfo";
 import {
-  userInfo,
   validateOptions,
   cardSelector,
   postListSelector,
+  nameSelector,
+  aboutSelector,
+  avatarSelector,
 } from "./constants";
+
+const api = new Api("https://around.nomoreparties.co/v1/web_ptbr_09", {
+  headers: {
+    authorization: "1146a04f-7181-45eb-9b96-3a5b76f79b15",
+    "Content-Type": "application/json",
+  },
+});
+
+const userInfo = new UserInfo({
+  nameSelector,
+  aboutSelector,
+  avatarSelector,
+  api: api,
+});
 
 function enableValidationForm(form) {
   new FormValidator({
@@ -30,6 +49,17 @@ function createPosts(posts, insertMethod = "append") {
             popup.open(data);
             popup.setEventListeners();
           },
+          handleTrashClick: () => {
+            const popupConfirmation = new PopupWithConfirmation(
+              ".popup_confirmation",
+              () => {
+                card.confirmDeleteCard(popupConfirmation.close);
+              }
+            );
+            popupConfirmation.open();
+            popupConfirmation.setEventListeners();
+          },
+          api: api,
         });
         newPost.addItem(card.getCard());
       },
@@ -41,9 +71,10 @@ function createPosts(posts, insertMethod = "append") {
 
 function setInputsProfile(popup) {
   const form = popup.querySelector(".popup__form");
-  const { name, job } = userInfo.getUserInfo();
-  form.name.value = name;
-  form.about.value = job;
+  userInfo.getUserInfo().then((res) => {
+    form.name.value = res.name;
+    form.about.value = res.about;
+  });
 }
 
 function resetValidationForm(form) {
@@ -74,4 +105,6 @@ export {
   setInputsProfile,
   enableValidationForm,
   createPosts,
+  api,
+  userInfo,
 };
