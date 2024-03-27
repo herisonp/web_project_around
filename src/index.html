@@ -25,7 +25,7 @@
               />
             </button>
             <img
-              src="<%= require('./images/avatar.png') %>"
+              src="<%= require('./images/avatar-fallback.png') %>"
               class="profile__avatar"
               alt="Imagem de avatar do usuário"
             />
@@ -55,6 +55,7 @@
 
         <section class="posts">
           <ul class="posts__list"></ul>
+          <p class="posts__empty-text">Adicione seu primeiro post...</p>
         </section>
       </main>
       <footer class="footer container">
@@ -130,9 +131,7 @@
               <span class="popup__error"></span>
             </div>
           </fieldset>
-          <button type="submit" class="button popup__btn-submit">
-            Salvar...
-          </button>
+          <button type="submit" class="button popup__btn-submit">Salvar</button>
         </form>
       </div>
     </div>
@@ -147,7 +146,7 @@
         </button>
         <h2 class="popup__title">Tem certeza?</h2>
         <button type="submit" class="button popup__btn-confirmation">
-          Salvar
+          Sim
         </button>
       </div>
     </div>
