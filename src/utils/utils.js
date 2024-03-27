@@ -36,40 +36,48 @@ function enableValidationForm(form) {
 }
 
 function createPosts(posts, insertMethod = "append") {
+  function trashClick(card) {
+    const popupConfirmation = new PopupWithConfirmation(
+      ".popup_confirmation",
+      () => {
+        card
+          .confirmDeleteCard()
+          .then(() => {
+            popupConfirmation.close();
+            newPost.isEmpty();
+          })
+          .catch(console.log);
+      }
+    );
+    popupConfirmation.open();
+    popupConfirmation.setEventListeners();
+  }
+
+  function handleCardClick(data) {
+    const popup = new PopupWithImage(".popup_image");
+    popup.open(data);
+    popup.setEventListeners();
+  }
+
+  function renderer(item) {
+    const card = new Card({
+      data: item,
+      cardSelector,
+      handleCardClick,
+      handleTrashClick: () => {
+        trashClick(card);
+      },
+      api: api,
+    });
+    newPost.addItem(card.getCard());
+  }
+
   const newPost = new Section(
     {
       items: posts,
       insertMethod,
       emptySelector: ".posts__empty-text",
-      renderer: (item) => {
-        const card = new Card({
-          data: item,
-          cardSelector,
-          handleCardClick: (data) => {
-            const popup = new PopupWithImage(".popup_image");
-            popup.open(data);
-            popup.setEventListeners();
-          },
-          handleTrashClick: () => {
-            const popupConfirmation = new PopupWithConfirmation(
-              ".popup_confirmation",
-              () => {
-                card
-                  .confirmDeleteCard()
-                  .then(() => {
-                    popupConfirmation.close();
-                    newPost.isEmpty();
-                  })
-                  .catch(console.log);
-              }
-            );
-            popupConfirmation.open();
-            popupConfirmation.setEventListeners();
-          },
-          api: api,
-        });
-        newPost.addItem(card.getCard());
-      },
+      renderer,
     },
     postListSelector
   );
