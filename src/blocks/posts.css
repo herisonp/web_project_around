@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+.posts__empty-text {
+  color: #ffffff;
+  text-align: center;
+}
+
+.posts__empty-text_hidden {
+  display: none;
+}
+
 .posts__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
