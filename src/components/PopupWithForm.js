@@ -40,7 +40,6 @@ export default class PopupWithForm extends Popup {
   _getInputValues(evt) {
     const form = evt.target;
     this._submitForm(form);
-    this.close();
   }
 
   setEventListeners() {

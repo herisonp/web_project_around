@@ -74,15 +74,13 @@ export default class Card {
     }
   }
 
-  confirmDeleteCard(closePopup) {
-    this._api
+  confirmDeleteCard() {
+    return this._api
       .deleteCardById(this._data._id)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         this._card.remove();
-        closePopup();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => Promise.reject(err));
   }
 
   _handleTrashButton() {

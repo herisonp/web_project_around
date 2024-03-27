@@ -40,6 +40,7 @@ function createPosts(posts, insertMethod = "append") {
     {
       items: posts,
       insertMethod,
+      emptySelector: ".posts__empty-text",
       renderer: (item) => {
         const card = new Card({
           data: item,
@@ -53,7 +54,13 @@ function createPosts(posts, insertMethod = "append") {
             const popupConfirmation = new PopupWithConfirmation(
               ".popup_confirmation",
               () => {
-                card.confirmDeleteCard(popupConfirmation.close);
+                card
+                  .confirmDeleteCard()
+                  .then(() => {
+                    popupConfirmation.close();
+                    newPost.isEmpty();
+                  })
+                  .catch(console.log);
               }
             );
             popupConfirmation.open();
@@ -67,6 +74,15 @@ function createPosts(posts, insertMethod = "append") {
     postListSelector
   );
   newPost.renderItems();
+}
+
+function getAllCards() {
+  api
+    .getInitialCards()
+    .then((res) => {
+      createPosts(res);
+    })
+    .catch((err) => console.log(err));
 }
 
 function setInputsProfile(popup) {
@@ -105,6 +121,7 @@ export {
   setInputsProfile,
   enableValidationForm,
   createPosts,
+  getAllCards,
   api,
   userInfo,
 };
