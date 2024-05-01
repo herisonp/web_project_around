@@ -26,7 +26,7 @@ export class Api {
   }
 
   postCard(card) {
-    return this._makeRequest("cards", "POST", card);
+    return this._makeRequest("/cards", "POST", card);
   }
 
   deleteCardById(id) {
